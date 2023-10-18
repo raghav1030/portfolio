@@ -6,7 +6,7 @@ export const renderDefault = (command: string , isTerminalCommand : boolean = fa
   
   
   const renderCommand = () => {
-    return '<span className="error">' + command + '</span>';
+    return '<span className="error">' + command.trim().toLowerCase() + '</span>';
   };
 
   if(isTerminalCommand){
