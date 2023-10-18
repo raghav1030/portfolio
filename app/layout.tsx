@@ -1,5 +1,4 @@
 import './globals.css'
-import favicon from './facivon.png'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { CommandContextProvider } from './ContextApi/commandContext'

@@ -19,7 +19,6 @@ export const commandsData: CommandData[] = [
   { command: "clear", category: "info", response: "Clears up the terminal" },
   { command: "init", category: "info", response: "Initializes the terminal"},
   { command: "contactme", category: "info", response: "Show contact information." },
-  { command: "mysocials", category: "info", response: "Display social links." },
   { command : "twitter", category: "info", response: "Follow me on twitter." },
   { command : "github", category: "info", response: "Check out my github." },
   { command : "linkedin", category: "info", response: "Connect with me on linkedin." },
@@ -28,7 +27,7 @@ export const commandsData: CommandData[] = [
 ];
 
 
-const formattedCommands = commandsData.map(command => `- ${command.command} - ${command.response}`).join('\n');
+const formattedCommands = commandsData.map(command => `  - ${command.command} ~ ${command.response}`).join('\n');
 
 export const renderHelp = (commandsData: CommandData[]) => {
   return (

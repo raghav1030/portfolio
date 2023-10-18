@@ -94,6 +94,10 @@ const History: FC = () => {
       default:
         // Handle unknown command
         console.log(`Unknown command: ${inputCommand}`);
+        
+        if(inputCommand === 'ls' || inputCommand === 'cat' || inputCommand === 'cd' || inputCommand === 'rm' || inputCommand === 'mkdir'){
+          return renderDefault(inputCommand , true);
+        }
         return renderDefault(inputCommand);
     }
   };
