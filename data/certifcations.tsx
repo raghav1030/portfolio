@@ -17,9 +17,9 @@ export const certifications: Certification[] = [
   },
   { 
     id: 2,
-    title: "Google Digital Marketing",
-    issuer: "Google Digital Garage",
-    certificate_link: 'https://drive.google.com/file/d/18MyE_iq8-4LbSTPKpMe2naRbLOhfe9Be/view?usp=sharing'
+    title: "Upskillz Certified Full Stack Web Developer",
+    issuer: "Upskillz",
+    certificate_link: 'https://drive.google.com/file/d/1ena-GAqJzHjIkueosOngqWH3_i6qUuSJ/view?usp=sharing'
   },
   // Add more certification entries as needed
 ];
