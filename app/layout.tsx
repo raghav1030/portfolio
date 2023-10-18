@@ -10,7 +10,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Terminal Portfolio - Raghav Gandhi',
   description: 'An interactive terminal portfolio made by Raghav Gandhi',
-  
+  icons : {
+    icon : ['/android-chrome-192x192.png?v=4'],
+    apple : ['/apple-touch-icon.png?v=4'],
+    shortcut : ['/apple-touch-icon.png'],
+  }
 }
 
 export default function RootLayout({
