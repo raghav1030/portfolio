@@ -101,7 +101,7 @@ const History: FC = () => {
 
   return (
     <div  data-theme="myTheme" className="">
-      {Array.isArray(command?.commandHistory) &&
+      {Array.isArray(command) &&
         command?.commandHistory.length > 0 &&
         command?.commandHistory.map((command, index) => (
           <div className="mb-4  flex flex-col  whitespace-nowrap " key={index + command}>
