@@ -9,17 +9,20 @@ interface MappedEventData {
 }
 
 export const renderContributions = () => {
-  
+
   let contributions = useApiData()?.contributions
 
-  contributions = contributions?.filter((contribution : any) => contribution.type === "IssueCommentEvent" ||
-  contribution.type === "PullRequestEvent" ||
-  contribution.type === "PushEvent" ||
-  contribution.type === "IssuesEvent"
-  )
-    
 
-  
+  contributions = contributions?.filter((contribution: any) => contribution.type === "IssueCommentEvent" ||
+    contribution.type === "PullRequestEvent" ||
+    contribution.type === "PushEvent" ||
+    contribution.type === "IssuesEvent"
+  )
+
+  console.log(contributions)
+
+
+
   const renderLinkElement = (link: string, linkName: string) => {
     return `<a href=${link} target='__blank'>${linkName}</a>`;
   };
@@ -37,20 +40,26 @@ export const renderContributions = () => {
       url:
         event.type === "IssueCommentEvent"
           ? renderLinkElement(
-              event?.payload?.issue?.html_url,
-              event?.payload?.issue?.html_url
-            )
+            event?.payload?.issue?.html_url,
+            event?.payload?.issue?.html_url
+          )
           : event.type === "PullRequestEvent"
-          ? renderLinkElement(
-              event?.payload?.pull_request?.html_url,
-              event?.payload?.pull_request?.html_url
+            ? renderLinkElement(
+              'https://github.com/' + event?.repo?.name + '/pull/' + event?.payload?.pull_request?.number,
+              'https://github.com/' + event?.repo?.name + '/pull/' + event?.payload?.pull_request?.number
             )
-          : event.type === "PushEvent"
-          ? renderLinkElement(
-              event?.payload?.commits[0]?.url,
-              event?.payload?.commits[0]?.url
-            )
-          : "",
+            : event.type === "PushEvent"
+              ? renderLinkElement(
+                'https://github.com/' + event?.repo?.name + '/commit/' + event?.payload?.commits[0]?.sha,
+                'https://github.com/' + event?.repo?.name + '/commit/' + event?.payload?.commits[0]?.sha,
+              )
+              :
+              event.type === "IssuesEvent"
+                ? renderLinkElement(
+                  'https://github.com/' + event?.repo?.name + '/issues/' + event?.payload?.issue?.number,
+                  'https://github.com/' + event?.repo?.name + '/issues/' + event?.payload?.issue?.number,
+                )
+                : "",
       created_at: event.created_at,
     };
   }
