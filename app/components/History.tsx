@@ -18,16 +18,16 @@ import { renderContributions } from "@/data/contributions";
 const History: FC = () => {
   const command = useCommand();
   const historyRef = useRef<HTMLPreElement>(null);
-  
+
   useEffect(() => {
-    if(historyRef.current ){
-      historyRef.current.scrollIntoView({ behavior: 'smooth' }); ;
+    if (historyRef.current) {
+      historyRef.current.scrollIntoView({ behavior: 'smooth' });;
     }
   }, [command?.commandHistory])
 
-  const renderResponse = (inputCommand: string) : TrustedHTML | string => {
+  const renderResponse = (inputCommand: string): TrustedHTML | string => {
 
-    
+
     switch (inputCommand.trim().toLocaleLowerCase()) {
       case "whoami":
         // Handle 'about' command
@@ -66,19 +66,19 @@ const History: FC = () => {
       case "skills":
         return renderSkills()
 
-      case "contactme" : 
-      return renderContact()
+      case "contactme":
+        return renderContact()
 
       case "linkedin":
         return openNewWindow("https://www.linkedin.com/in/raghav-gandhi-766b4917b/");
-         
+
 
       case "github":
-         return openNewWindow("https://github.com/raghav1030" )
+        return openNewWindow("https://github.com/raghav1030")
 
       case "twitter":
 
-      return openNewWindow("https://twitter.com/RaghavGandhi14");
+        return openNewWindow("https://twitter.com/RaghavGandhi14");
 
       case "resume":
         return openNewWindow("https://drive.google.com/file/d/1oYLoi3r3m2IwRQa_NpgmFgJEoyyjwUNp/view?usp=sharing")
@@ -88,8 +88,8 @@ const History: FC = () => {
 
       case "contributions":
 
-        return  renderContributions();
-      
+        return renderContributions();
+
 
       default:
         // Handle unknown command
@@ -100,22 +100,21 @@ const History: FC = () => {
 
 
   return (
-    <div  data-theme="myTheme" className="">
-      {Array.isArray(command) &&
+    <div data-theme="myTheme" className="">
+      {Array.isArray(command?.commandHistory) &&
         command?.commandHistory.length > 0 &&
         command?.commandHistory.map((command, index) => (
           <div className="mb-4  flex flex-col  whitespace-nowrap " key={index + command}>
             <div className="flex gap-3 ">
               <CommandPrompt /> <p className={`${commandsData.find(comm => command && comm.command === command.trim().toLocaleLowerCase()) ? "text-success" : "text-error"} font-bold `}>{command}</p>
             </div>
-        
-            <pre ref={historyRef} className="whitespace-pre-wrap  " dangerouslySetInnerHTML={{__html : renderResponse(command)}}></pre>
-            <br />
 
+            <pre ref={historyRef} className="whitespace-pre-wrap  " dangerouslySetInnerHTML={{ __html: renderResponse(command) }}></pre>
+            <br />
           </div>
         ))}
     </div>
-  );    
+  );
 };
 
 export default History;
