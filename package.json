@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
     "next": "latest",
+    "octokit": "^3.1.1",
     "react": "latest",
     "react-dom": "latest",
     "typed.js": "^2.0.16"

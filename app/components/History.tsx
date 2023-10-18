@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { useCommand } from "../ContextApi/commandContext";
 import { about, renderAbout } from "@/data/about";
 // import { renderAbout } from "../templates/renderAbout";
@@ -9,43 +9,47 @@ import { projects, renderProject } from "@/data/projects";
 import { commandsData, renderHelp } from "@/data/commands";
 import CommandPrompt from "./CommandPrompt";
 import { renderDefault } from "@/data/default";
-
+import init from "@/data/init";
+import { renderSkills } from "@/data/skills";
+import { renderContact } from "@/data/contact";
+import { openNewWindow } from "@/data/openNewWindow";
+import { renderContributions } from "@/data/contributions";
 
 const History: FC = () => {
   const command = useCommand();
+  const historyRef = useRef<HTMLPreElement>(null);
   
+  useEffect(() => {
+    if(historyRef.current ){
+      historyRef.current.scrollIntoView({ behavior: 'smooth' }); ;
+    }
+  }, [command?.commandHistory])
 
-  const renderResponse = (command: string) => {
-    switch (command) {
-      case "about":
+  const renderResponse = (inputCommand: string) : TrustedHTML | string => {
+
+    
+    switch (inputCommand.trim().toLocaleLowerCase()) {
+      case "whoami":
         // Handle 'about' command
         console.log("About command entered");
         return renderAbout(about);
 
-      case "projects":
+      case "myprojects":
         // Handle 'projects' command
         console.log("Projects command entered");
         return renderProject(projects);
 
-      case "contact":
-        // Handle 'contact' command
-        // setContent(contact);
-        console.log("Contact command entered");
-        break;
-
-      // Add more cases for other commands
-
-      case "experience":
+      case "work":
         // Handle 'experience' command
         console.log("Experience command entered");
         return renderExperience(experience);
 
-      case "certifications":
+      case "certs":
         // Handle 'experience' command
         console.log("Certifications command entered");
         return renderCertifications(certifications);
 
-      case "education":
+      case "edu":
         // Handle 'experience' command
         console.log("Education command entered");
         return renderEducation(education);
@@ -55,27 +59,63 @@ const History: FC = () => {
         console.log("help command entered");
         return renderHelp(commandsData);
 
+      case "init":
+        command?.clearCommandHistory();
+        return init();
+
+      case "skills":
+        return renderSkills()
+
+      case "contactme" : 
+      return renderContact()
+
+      case "linkedin":
+        return openNewWindow("https://www.linkedin.com/in/raghav-gandhi-766b4917b/");
+         
+
+      case "github":
+         return openNewWindow("https://github.com/raghav1030" )
+
+      case "twitter":
+
+      return openNewWindow("https://twitter.com/RaghavGandhi14");
+
+      case "resume":
+        return openNewWindow("https://drive.google.com/file/d/1oYLoi3r3m2IwRQa_NpgmFgJEoyyjwUNp/view?usp=sharing")
+
+      case "blogs":
+        return openNewWindow("https://hashnode.com/@rg1030");
+
+      case "contributions":
+
+        return  renderContributions();
+      
+
       default:
         // Handle unknown command
-        console.log(`Unknown command: ${command}`);
-        return renderDefault();
+        console.log(`Unknown command: ${inputCommand}`);
+        return renderDefault(inputCommand);
     }
   };
 
+
   return (
-    <div data-theme="myTheme" className="">
+    <div  data-theme="myTheme" className="">
       {Array.isArray(command?.commandHistory) &&
         command?.commandHistory.length > 0 &&
         command?.commandHistory.map((command, index) => (
-          <div className="mb-4" key={index + command}>
-            <div className="flex gap-3">
-              <CommandPrompt /> <p className={`${commandsData.find(comm => comm.command === command) ? "text-success"  : "text-error" }`}>{command}</p>
+          <div className="mb-4  flex flex-col  whitespace-nowrap " key={index + command}>
+            <div className="flex gap-3 ">
+              <CommandPrompt /> <p className={`${commandsData.find(comm => command && comm.command === command.trim().toLocaleLowerCase()) ? "text-success" : "text-error"} font-bold `}>{command}</p>
             </div>
-            <div>{renderResponse(command)}</div>
-              </div>
+        
+            <pre ref={historyRef} className="whitespace-pre-wrap  " dangerouslySetInnerHTML={{__html : renderResponse(command)}}></pre>
+            <br />
+
+          </div>
         ))}
     </div>
-  );
+  );    
 };
 
 export default History;

@@ -21,27 +21,48 @@ const config: Config = {
     themes: [
       
       {
-        myTheme: {
+        // myTheme: {
         
-          primary: "#4f46e5",
+        //   primary: "#4f46e5",
           
-          secondary: "#8d83d3",
+        //   secondary: "#8d83d3",
                    
-          accent: "#aa9be8",
+        //   accent: "#aa9be8",
                    
-          neutral: "#1d2c34",
+        //   neutral: "#1d2c34",
                    
-          "base-100": "#111827",
+        //   "base-100": "#111827",
                    
-          info: "#7385dd",
+        //   info: "#7385dd",
                    
-          success: "#22c55e",
+        //   success: "#22c55e",
                    
-          warning: "#f7bd36",
+        //   warning: "#f7bd36",
                    
-          error: "#e92b51",        
+        //   error: "#e92b51",        
 
-        },
+        // },
+
+        mytheme: {
+          
+          "primary": "#93B1A6",
+                   
+          // "secondary": "#8d83d3",
+                   
+          // "accent": "#aa9be8",
+                   
+          // "neutral": "#1d2c34",
+                   
+          "base-100": "#040D12",
+                   
+          // "info": "#4E4FEB",
+                   
+          "success": "#22c55e",
+                   
+          // "warning": "#f7bd36",
+                   
+          "error": "#FF0000",
+                   },
       },
     ],
     // darkTheme: "dark", // name of one of the included themes for dark mode

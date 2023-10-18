@@ -1,6 +1,7 @@
 // data/experienceData.ts
 
 export interface Experience {
+    id : number;
     title: string;
     company: string;
     date: string;
@@ -9,6 +10,7 @@ export interface Experience {
   
   export const experience: Experience[] = [
     {
+      id : 1,
       title: "Open Source Developer",
       company: "GirlScript Summer of Code",
       date: "May 2023 - August 2023",
@@ -18,7 +20,8 @@ export interface Experience {
       ],
     },
     {
-      title: "Web Developer",
+      id : 2,
+      title: "Open Source Developer",
       company: "Social (Formerly Script Foundation)",
       date: "June 2023 - July 2023",
       description: [
@@ -30,25 +33,15 @@ export interface Experience {
   ];
       
 
-export const renderExperience = (experienceData: Experience[]): JSX.Element => {
+export const renderExperience = (experienceData: Experience[]): string => {
   return (
-    <div className="experience">
-      <h2>Work Experience</h2>
-      <ul>
-        {experienceData.map(exp => (
-          <li key={exp.title}>
-            <h3>{exp.title}</h3>
-            <p>
-              <strong>{exp.company}</strong> | {exp.date}
-            </p>
-            <ul>
-              {exp.description.map((desc, index) => (
-                <li key={index}>{desc}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  
+`${experienceData.map(exp => (
+`
+${exp.title}
+- ${exp.company}
+- ${exp.date}
+- ${exp.description} 
+${exp.id !== experience.length - 1 ? '' : '\n--------------------------------------------------------------'}
+`)).join('')}`);
 };

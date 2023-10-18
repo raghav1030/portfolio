@@ -7,6 +7,8 @@ const useOnClickAnywhere = (inputRef : React.RefObject<HTMLInputElement>) => {
     const handleClickOutside = (event : MouseEvent ) => {
         if(inputRef.current && !inputRef.current.contains(event.target as Node)){
             inputRef.current.focus();
+            inputRef.current.scrollIntoView();
+            inputRef.current.focus({ preventScroll: true });
         }
     }
 

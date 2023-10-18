@@ -46,7 +46,7 @@ export const projects : ProjectData = {
         'Spearheaded the creation of a user-friendly web app for GitHub profile exploration. Integrated real-time data from GitHub API for detailed insights. Showcased expertise in GitHub, JavaScript, CSS, API Integration, and HTML.',
       technologies: ['GitHub API', 'JavaScript', 'CSS', 'HTML'],
       githubRepo: 'https://github.com/raghav1030/Dev-Detective',
-    },
+    }
   ],
   fullStackProjects: [
     {
@@ -74,67 +74,45 @@ export const projects : ProjectData = {
 
 // Import statements...
 
-export const renderProject  = (project: ProjectData) => {
-  const renderSingleProject = (singleProject: FrontendProject | FullStackProject | OtherProject) => {
-    return (
-      <div className="" key={singleProject.title}   >
-        <h1 className="text"  >{singleProject.title}</h1>
-        <p>{singleProject.description}</p>
+const renderTechnologies = (technologies: string[]) => {
+  return technologies.map((tech, index) => `- ${tech}`).join('\n   ');
+};
 
-        {singleProject.hasOwnProperty('technologies') && (
-          <div className="flex ">
-            <pre className=" text-purple-400" >Technologies : </pre>
-            <ul className="flex ">
-              {(singleProject as FrontendProject | FullStackProject).technologies.map((tech, index) => (
-                <li key={index}>
-                  <pre>{tech}<span>{index === (singleProject as FrontendProject | FullStackProject).technologies.length-1 ? "." : "," }</span> </pre>
-                   </li>
-              ))}
-            </ul>
-          </div>
-        )}
+const renderNote = (note: string) => {
+  return `Note: ${note}\n`;
+};
 
-        {/* {singleProject.hasOwnProperty('achievements') && (
-          <>
-            <h2>Achievements</h2>
-            <ul>
-              {(singleProject as FullStackProject).achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
-              ))}
-            </ul>
-          </>
-        )} */}
+const renderSingleProject = (singleProject: FrontendProject | FullStackProject ) => {
 
-        {(singleProject as FullStackProject | FrontendProject).hasOwnProperty('githubRepo') && (
-          <p>
-            GitHub Repo:{" "}
-            <a href={(singleProject as FullStackProject | FrontendProject).githubRepo} target="_blank" rel="noopener noreferrer" className="text-primary ">
-              {(singleProject as FullStackProject | FrontendProject).githubRepo}
-            </a>
-          </p>
-        )}
-
-        {singleProject.hasOwnProperty('note') && (
-          <>
-            <h2>Note</h2>
-            <p>{(singleProject as OtherProject).note}</p>
-          </>
-        )}
-        <br />
-      </div>
-    );
-  };
+  const { title, description, technologies, githubRepo } = singleProject;
+  
 
   return (
-    <div >
-      <h1 className="text-slate-700" >
-        Hello World
-      </h1>
-      {project.frontendProjects.map((frontendProject) => renderSingleProject(frontendProject))}
-      {project.fullStackProjects.map((fullStackProject) => renderSingleProject(fullStackProject))}
-      {project.otherProjects.map((otherProject) => renderSingleProject(otherProject))}
-    </div>
+`
+${title}
+
+${description}
+
+Technologies:\n${technologies.map(tech => `- ${tech}`).join('\n')}\n
+GitHub Repo: <a href=${githubRepo}}>${githubRepo}</a>
+`  );
+}
+
+export const renderProject  = (project: ProjectData) => {
+  return (
+    
+`${project.fullStackProjects.map((fullStackProject) => renderSingleProject(fullStackProject)).join('--------------------------------------------------------------')}
+--------------------------------------------------------------
+${project.frontendProjects.map((frontendProject) => renderSingleProject(frontendProject)).join('\n--------------------------------------------------------------\n')}
+--------------------------------------------------------------
+
+Note : I have a number of other exciting and innovative projects showcased on my GitHub profile that I made during my learning journey, awaiting your exploration! Feel free to visit my GitHub at <a href="https://github.com/raghav1030/">https://github.com/raghav1030/</a>  to delve deeper into my work.
+`
+  
   );
+  
+
+  
 };
 
 

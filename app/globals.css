@@ -3,11 +3,97 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Hack', monospace;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  color: #a6b2ae;
+  /* overflow-x: hidden; */
+}
+
+/* html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+  overflow: auto;
+} */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e252e;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #848eac;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c3d1e1;
 }
 
 
 
+::-moz-selection { /* Code for Firefox */
+  color: rgb(132, 255, 0);
+  background: rgb(0, 0, 0);
+}
+
+::selection {
+  color: rgb(132, 255, 0);
+  background: rgb(0, 0, 0);
+}
+
+
+a{
+  color: rgb(61, 156, 219);
+}
+
+a:hover{
+  color: rgb(113, 177, 220);
+}
+
+input{
+  font-weight: bolder;
+}
+
+.error{
+  color: red;
+  font-weight: bolder;
+}
+
+.help{
+  color: greenyellow;
+  font-weight: bolder;
+}
+
+
+pre::before {
+  /* background-color: black; */
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+}
+
+pre::before{
+  animation: typewriter 10s ease forwards ;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+} 
