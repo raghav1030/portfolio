@@ -81,7 +81,7 @@ const History: FC = () => {
         return openNewWindow("https://twitter.com/RaghavGandhi14");
 
       case "resume":
-        return openNewWindow("https://drive.google.com/file/d/1315GFZJyuAaRrfqyL4Et2jC6FzoBoMpZ/view?usp=sharing")
+        return openNewWindow("https://drive.google.com/file/d/1yFkUzem8N11HgVmHGkppHpM2rfC0RWO6/view?usp=sharing")
 
       case "blogs":
         return openNewWindow("https://hashnode.com/@rg1030");
